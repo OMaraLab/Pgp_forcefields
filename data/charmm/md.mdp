@@ -1,0 +1,47 @@
+integrator              = md
+dt                      = 0.002
+nsteps                  = 100000000
+nstlog                  = 10000
+nstxout                 = 0
+nstvout                 = 0
+nstfout                 = 0
+nstcalcenergy           = 100
+nstenergy               = 10000
+nstxout-compressed       = 5000
+compressed-x-precision = 1000
+;nstxtcout       = 10000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+coulombtype             = pme
+rcoulomb                = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+;
+tcoupl                  = Nose-Hoover
+tc_grps                 = Protein   Membrane   Solvent
+tau_t                   = 1.0    1.0    1.0
+ref_t                   = 300 300 300
+;
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = semiisotropic
+tau_p                   = 5.0
+compressibility         = 4.5e-5  4.5e-5
+ref_p                   = 1.0     1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+
+;
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = Protein Membrane Solvent
+;
+refcoord_scaling        = com
+continuation             = no
+gen_vel                  = yes
+gen_temp                 = 300
+gen_seed                 = -1
